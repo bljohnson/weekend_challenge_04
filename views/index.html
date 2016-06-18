@@ -6,8 +6,43 @@
     <script src="vendors/jquery-1.12.3.js" charset="utf-8"></script>
     <script src="scripts/client.js" charset="utf-8"></script>
     <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    <h1>Git-R-Done!</h1>
+    <h1>Just Do The Damn Thing</h1>
+
+    <div class="addTask">
+      <input type="text" id="newTask" placeholder="Enter task name here" value=""></input>
+      <select>
+        <option value="Select Category">Select Category</option>
+        <option value="Work">Work</option>
+        <option value="School">School</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Chores">Chores</option>
+        <option value="Family">Family</option>
+        <option value="Miscellaneous">Miscellaneous</option>
+      </select>
+      <button type="button" id="newTaskBtn">Add Task</button>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" id="task">TASK
+          <div class="outputDiv">
+          </div>
+        </div>
+        <div class="col-md-4" id="category">CATEGORY
+          <div class="outputDiv">
+          </div>
+        </div>
+        <div class="col-md-4" id="action">TAKE ACTION
+          <div class="outputDiv">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <section class="left">TASK</section>
+    <section class="center">CATEGORY</section>
+    <section class="right">STATUS</section> -->
   </body>
 </html>

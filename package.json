@@ -1,0 +1,25 @@
+{
+  "name": "weekend-challenge-4",
+  "version": "1.0.0",
+  "description": "to do application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bljohnson/weekend_challenge_04.git"
+  },
+  "author": "bljohnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bljohnson/weekend_challenge_04/issues"
+  },
+  "homepage": "https://github.com/bljohnson/weekend_challenge_04#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.14.0",
+    "pg": "^5.1.0"
+  }
+}

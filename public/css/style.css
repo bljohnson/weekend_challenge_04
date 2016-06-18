@@ -1,0 +1,35 @@
+body {
+  text-align: center;
+}
+
+.addTask {
+  margin: 3% auto;
+}
+
+#newTask, select, #newTaskBtn {
+  margin: 0 1%;
+}
+
+#task, #category, #action {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.outputDiv {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+#complete, #delete {
+  margin: 0 1%;
+}
+
+/*.left {
+  margin-left: 35%;
+  float: left;
+}
+
+.right {
+  margin-right: 35%;
+  float: right;*/
+/*}*/
