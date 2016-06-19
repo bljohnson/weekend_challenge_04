@@ -2,6 +2,11 @@ console.log('javascript is sourced!');
 
 $(document).ready(function() {
   console.log('jQuery is sourced!');
+
+  var date = new Date();
+  var getDate = date.getMonth()+1 + '-' + date.getDate() + '-' + date.getFullYear();
+  $('#currentDate').append(getDate);
+
   listToDom(); // display existing list upon application load
 
   $('#newTaskBtn').on('click', function () {
@@ -31,6 +36,8 @@ $('.pendingTasksDiv').on('click', '#complete', function () {
     'id': $(this).attr('data-item')
   };
   $(this).parent().css('text-decoration', 'line-through').css('opacity', '0.50'); // change visual rep of completed task on FE
+  // $(this).parent().append('#completedTasksDiv');
+  // $(this).parent().remove();
   console.log('this id completed: ' + $(this).attr('data-item'));
   $.ajax({
     type: 'POST',
@@ -46,15 +53,20 @@ $('.pendingTasksDiv').on('click', '#delete', function () {
   var getID = {
     'id': $(this).attr('data-item')
   };
-  $(this).parent().remove(); // remove task from DOM
-  $.ajax({
-    type: 'POST',
-    url: '/deleteTask', // post to this URL which will delete task from db table
-    data: getID,
-    success: function () {
-      console.log('task no longer necessary');
-    } // end success function
-  }); //end ajax POST request
+  var confirmDelete = confirm('Your conscience says: Are you sure you want put off until tomorrow what you can do today?');
+  if (confirmDelete) {
+    $(this).parent().remove(); // remove task from DOM
+    $.ajax({
+      type: 'POST',
+      url: '/deleteTask', // post to this URL which will delete task from db table
+      data: getID,
+      success: function () {
+        console.log('task no longer necessary');
+      } // end success function
+    }); //end ajax POST request
+  } else {
+    alert ('Good choice - your momma would be proud!');
+  }// end if statement
 }); // end delete button click function
 
 }); // end doc ready function
@@ -65,7 +77,9 @@ function displayCurrentList (list) {
   for (i=0; i<list.length; i++) {
     // populate DOM with data from db and complete/delete buttons for each task
     var createDiv = $('.pendingTasksDiv').append('<div data-item="'+list[i].id+'">'+'</div>');
-    var displayTask = createDiv.append('<p>'+list[i].task+'<button type="button" id="complete" data-item="'+list[i].id+'">Complete'+'</button><button type="button" id="delete" data-item="'+list[i].id+'">Delete'+'</button></p>');
+    var displayTask = createDiv.append('<p><input type="checkbox" id="complete" data-item="'+list[i].id+'">'+list[i].task+'<button type="button" id="delete" data-item="'+list[i].id+'">Delete'+'</button></p>');
+
+    // var displayTask = createDiv.append('<p>'+list[i].task+'<button type="button" id="complete" data-item="'+list[i].id+'">Complete'+'</button><button type="button" id="delete" data-item="'+list[i].id+'">Delete'+'</button></p>');
   } // end for loop
 } // end displayCurrentList function
 

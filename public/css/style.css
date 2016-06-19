@@ -3,9 +3,11 @@ body {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 38px;
   font-weight: bold;
-  margin: 3% auto;
+  margin-top: 4%;
+  margin-bottom: 2%;
+  font-family: cursive;
 }
 
 #newTask, #newTaskBtn {
@@ -18,10 +20,28 @@ h1 {
   border: 2px solid black;
   margin: 2% auto;
   width: 30%;
-  padding: 2% 2%;
+  height: 400px;
+  padding: 2% 3%;
+  background-image: url('http://up.hawahome.com/uploads/14526080163.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+  /*text-align: left;*/
 }
 
 .pendingTasksDiv button {
   float: right;
-  margin: 0 0.5%;
+}
+
+.pendingTasksDiv input {
+  float: left;
+}
+
+#dateIntro {
+  font-size: 20px;
+}
+
+#currentDate {
+  font-family: cursive;
+  font-size: 18px;
 }
