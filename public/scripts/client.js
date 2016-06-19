@@ -11,7 +11,7 @@ $(document).ready(function() {
   completedListToDom(); // display existing completed list upon application load
 
   $('#newTaskBtn').on('click', function () {
-    event.preventDefault(); // enables auto-update of list on DOM after first task is added to list and Add button clicked
+    // event.preventDefault(); // enables auto-update of list on DOM after first task is added to list and Add button clicked
     $('.pendingTasksDiv').empty(); // refresh this div each time to prevent duplication
     // assemble an object (always need to do this for a POST call)
     var task = $('#newTask').val();
@@ -30,15 +30,16 @@ $(document).ready(function() {
       } // end success function
     }); // end ajax POST request
     $('#newTask').val(''); // empty input field after a task is added by user
+    // location.reload(true);
   }); // end add task click function
 
 $('.pendingTasksDiv').on('click', '#complete', function () {
-  event.preventDefault(); // enables auto-update of list on DOM after first task is added to list and Add button clicked
+  // event.preventDefault(); // enables auto-update of list on DOM after first task is added to list and Add button clicked
   $('.completedTasksDiv').empty(); // refresh this div each time to prevent duplication
   var getID = {
     'id': $(this).attr('data-item')
   };
-  $(this).parent().css('text-decoration', 'line-through').css('opacity', '0.60'); // change visual rep of completed task on FE
+  // $(this).parent().css('text-decoration', 'line-through').css('opacity', '0.60'); // change visual rep of completed task on FE
   // $(this).parent().append('#completedTasksDiv'); // trying to move completed tasks to completedTasksDiv...
   $(this).parent().remove(); // and at the same time remove them from this pendingTasksDiv...
   console.log('this id completed: ' + $(this).attr('data-item'));
@@ -73,7 +74,14 @@ $('.pendingTasksDiv').on('click', '#delete', function () {
   }// end if statement
 }); // end delete button click function
 
+// function works to clear lists on DOM, but doesn't clear tasks from db...yet...
+// $('#clearAll').click(function () {
+//   $('.completedTasksDiv').empty();
+//   $('.pendingTasksDiv').empty();
+// }); // end clearAll button click function
+
 }); // end doc ready function
+
 
 
 // global functions
@@ -81,7 +89,7 @@ function displayCurrentList (list) {
   for (i=0; i<list.length; i++) {
     // populate DOM with data from db and complete/delete buttons for each task
     var createDiv = $('.pendingTasksDiv').append('<div data-item="'+list[i].id+'">'+'</div>');
-    var displayTask = createDiv.append('<p><input type="checkbox" id="complete" data-item="'+list[i].id+'">'+list[i].task+'<button type="button" id="delete" data-item="'+list[i].id+'">Delete'+'</button></p>');
+    var displayTask = createDiv.append('<p><input type="checkbox" id="complete" data-item="'+list[i].id+'">'+list[i].task+'<button type="button" id="delete" data-item="'+list[i].id+'">—'+'</button></p>');
   } // end for loop
 } // end displayCurrentList function
 
@@ -95,15 +103,14 @@ function listToDom () {
   }); //end ajax GET request
 } // end listToDom function
 
-
-// ---------------------------------
-
-
 function displayCompletedList (list) {
   for (i=0; i<list.length; i++) {
     // populate DOM with data from db and complete/delete buttons for each task
     var createNewDiv = $('.completedTasksDiv').append('<div data-item="'+list[i].id+'">'+'</div>');
-    var displayDoneTask = createNewDiv.append('<p><input type="checkbox" id="complete" data-item="'+list[i].id+'">'+list[i].task+'<button type="button" id="delete" data-item="'+list[i].id+'">Delete'+'</button></p>');
+    var displayDoneTask = createNewDiv.append('<p>'+list[i].task+'</p>');
+
+    createNewDiv.css('text-decoration', 'line-through').css('opacity', '0.60'); // change visual rep of completed task on FE
+
   } // end for loop
 } // end displayCompletedList function
 
@@ -116,27 +123,3 @@ function completedListToDom () {
     } // end success function
   }); //end ajax GET request
 } // end completedListToDom function
-
-
-
-
-// function displayCompletedList (list) {
-//   //  console.log( 'in displayCurrentList:' + list );
-//   for (i=0; i<list.length; i++) {
-//     // populate DOM with data from db and complete/delete buttons for each task
-//     var createDiv = $('.completedTasksDiv').append('<div data-item="'+list[i].id+'">'+'</div>');
-//     var displayTask = createDiv.append('<p>'+list[i].task+'<button type="button" id="complete" data-item="'+list[i].id+'">Complete'+'</button><button type="button" id="delete" data-item="'+list[i].id+'">Delete'+'</button></p>');
-//   } // end for loop
-// } // end displayCurrentList function
-//
-//
-// function listCompletedToDom () {
-//   $.ajax({
-//     type: 'GET',
-//     url: '/getCompletedList',
-//     success: function (data) {
-//       console.log('completed list posted to DOM');
-//       displayCompletedList(data);
-//     } // end success function
-//   }); //end ajax request
-// }

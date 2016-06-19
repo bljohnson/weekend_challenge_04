@@ -9,33 +9,34 @@ h1 {
   font: normal bold 34px 'Comic Sans MS', Tahoma;
   margin-top: 0;
   margin-bottom: 1%;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  background-color: rgb(241,232,199);
-  /*opacity: 0.85;*/
+  padding-top: 1.5%;
+  padding-bottom: 1.5%;
+  background-color: rgb(255,177,73);
+  opacity: 0.90;
 }
 
 #dateIntro {
-  font: italic bold 20px 'Comic Sans MS', Tahoma;
+  font: italic bold 22px 'Comic Sans MS', Tahoma;
 }
 
 #currentDate {
-  font: normal bold 16px 'Comic Sans MS', Tahoma;
+  font: normal bold 18px 'Comic Sans MS', Tahoma;
 }
 
 #newTask, #newTaskBtn {
-  margin: 1% 0.5%;
+  margin: 1% 0;
+  font-size: 18px;
 }
 
 #newTask {
-  width: 10%;
+  width: 12%;
 }
 
 .pendingTasksDiv, .completedTasksDiv {
   font: 18px 'Comic Sans MS', Tahoma;
   border: 2px solid black;
   margin: 1% auto;
-  width: 35%;
+  width: 30%;
   height: 450px;
   padding: 2% 3%;
   background: url(http://up.hawahome.com/uploads/14526080163.jpg) no-repeat;
@@ -44,15 +45,21 @@ h1 {
   /*text-align: left;*/
 }
 
-.pendingTasksDiv button, .completedTasksDiv button {
-  font-size: 16px;
+.pendingTasksDiv button {
+  font-size: 12px;
   float: right;
 }
 
-.pendingTasksDiv input, .completedTasksDiv input {
+#complete {
   float: left;
 }
 
-.container {
+/*.container {
   display: inline-block;
+}*/
+
+button:hover{
+    background: -webkit-gradient(linear, left top, left bottom, from(#DCDCDC), to(#EDEDED));
+    background: -moz-linear-gradient(top,  #DCDCDC,  #EDEDED);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DCDCDC', endColorstr='#EDEDED');
 }
