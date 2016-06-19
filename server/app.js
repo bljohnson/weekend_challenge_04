@@ -27,7 +27,7 @@ app.get('/getList', function (req, res) {
     var list = [];
     pg.connect(connectionString, function (err, client, done) {
       // get all animals in zoo and store in stock var
-      var currentList = client.query('SELECT id, task, category, completed FROM list;');
+      var currentList = client.query('SELECT id, task, completed FROM list;');
       // push each row into list array
       var rows = 0;
       currentList.on('row', function (row) {
@@ -43,15 +43,43 @@ app.get('/getList', function (req, res) {
 app.post('/postNewTask', urlencodedParser, function (req, res) {
   console.log('in postNewTask URL:' + req.body.taskName);
   pg.connect(connectionString, function (err, client, done) {
-    client.query('INSERT INTO list (task, category, completed) VALUES ($1, $2, $3)', [req.body.taskName, req.body.categoryName, req.body.taskStatus]); // add new row in db table for animal being added by user
+    client.query('INSERT INTO list (task, completed) VALUES ($1, $2)', [req.body.taskName, req.body.taskStatus]); // add new row in db table for animal being added by user
   }); // end connect function
-  res.end();
+  res.end(); // ensures success function response sent
 }); // end app.post for postNewTask
 
-app.post('/completeTask', urlencodedParser, function (req,res) {
+app.post('/completeTask', urlencodedParser, function (req, res) {
   pg.connect(connectionString, function (err, client, done) {
     var id = req.body.id;
     client.query('UPDATE list SET completed=true WHERE id='+id+';');
   });
-  res.end();
+  res.end(); // ensures success function response sent
 }); // end app.post for completeTask
+
+app.post('/deleteTask', urlencodedParser, function (req, res) {
+  pg.connect(connectionString, function (err, client, done) {
+      var id = req.body.id;
+      client.query('DELETE FROM list WHERE id='+id+';');
+  });
+  res.end(); // ensures success function response sent
+});
+
+
+
+// app.get('/getCompletedList', function (req, res) {
+//   console.log('in getCompletedList URL');
+//   // create array to hold animal stock
+//     var list = [];
+//     pg.connect(connectionString, function (err, client, done) {
+//       // get all animals in zoo and store in stock var
+//       var currentList = client.query('SELECT id, task, category, completed FROM list WHERE completed=true;');
+//       // push each row into list array
+//       var rows = 0;
+//       currentList.on('row', function (row) {
+//         list.push(row);
+//       }); // end stock push
+//       currentList.on('end', function (){
+//         return res.json(list); // allows list to be displayed in DOM
+//       });
+//     }); // end connect function
+//   }); // end app.get for getList

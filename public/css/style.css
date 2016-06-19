@@ -2,38 +2,26 @@ body {
   text-align: center;
 }
 
-.addTask {
+h1 {
+  font-size: 40px;
+  font-weight: bold;
   margin: 3% auto;
 }
 
-#newTask, select, #newTaskBtn {
-  margin: 0 1%;
+#newTask, #newTaskBtn {
+  margin: 1% 0.5%;
 }
 
-#task, #category, #action {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.outputDiv {
+.pendingTasksDiv {
   font-size: 16px;
   font-weight: normal;
+  border: 2px solid black;
+  margin: 2% auto;
+  width: 30%;
+  padding: 2% 2%;
 }
 
-#complete, #delete {
-  margin: 0 1%;
+.pendingTasksDiv button {
+  float: right;
+  margin: 0 0.5%;
 }
-
-/*#action #complete[data-id='1']:active {
-  text-decoration: line-through;
-}*/
-
-/*.left {
-  margin-left: 35%;
-  float: left;
-}
-
-.right {
-  margin-right: 35%;
-  float: right;*/
-/*}*/
