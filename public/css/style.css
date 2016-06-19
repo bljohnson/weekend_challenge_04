@@ -24,6 +24,10 @@ body {
   margin: 0 1%;
 }
 
+/*#action #complete[data-id='1']:active {
+  text-decoration: line-through;
+}*/
+
 /*.left {
   margin-left: 35%;
   float: left;

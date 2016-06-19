@@ -21,13 +21,13 @@ app.get('/', function (req, res) {
   res.sendFile(path.resolve('views/index.html')); // gets this path
 });
 
-app.get('/getList', function (req, res){
+app.get('/getList', function (req, res) {
   console.log('in getList URL');
   // create array to hold animal stock
     var list = [];
-    pg.connect(connectionString, function (err, client, done){
+    pg.connect(connectionString, function (err, client, done) {
       // get all animals in zoo and store in stock var
-      var currentList = client.query('SELECT task, category, completed FROM list;');
+      var currentList = client.query('SELECT id, task, category, completed FROM list;');
       // push each row into list array
       var rows = 0;
       currentList.on('row', function (row) {
@@ -40,9 +40,18 @@ app.get('/getList', function (req, res){
   }); // end app.get for getList
 
 // post route (requires the urlencodedParser 'INJECTION' between route and function)
-app.post('/postNewTask', urlencodedParser, function(req, res){
+app.post('/postNewTask', urlencodedParser, function (req, res) {
   console.log('in postNewTask URL:' + req.body.taskName);
-  pg.connect(connectionString, function(err, client, done){
+  pg.connect(connectionString, function (err, client, done) {
     client.query('INSERT INTO list (task, category, completed) VALUES ($1, $2, $3)', [req.body.taskName, req.body.categoryName, req.body.taskStatus]); // add new row in db table for animal being added by user
   }); // end connect function
-}); // end app.post for postNewAnimal
+  res.end();
+}); // end app.post for postNewTask
+
+app.post('/completeTask', urlencodedParser, function (req,res) {
+  pg.connect(connectionString, function (err, client, done) {
+    var id = req.body.id;
+    client.query('UPDATE list SET completed=true WHERE id='+id+';');
+  });
+  res.end();
+}); // end app.post for completeTask
