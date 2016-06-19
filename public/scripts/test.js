@@ -59,26 +59,23 @@ $(document).ready(function() {
 
 
 
+// ---------------------------------
 
 
-
-
-function displayCurrentList (list) {
-  //  console.log( 'in displayCurrentList:' + list );
+function displayCompletedList (list) {
   for (i=0; i<list.length; i++) {
-    //  var todoList = $('#task').append('<div>'+list[i].task+'</div>') + $('#category').append('<div>'+list[i])
-    var todoList = $('#task').find('.outputDiv').append('<p>'+list[i].task+'</p>') + $('#category').find('.outputDiv').append('<p>'+list[i].category+'</p>') + $('#action').find('.outputDiv').append('<p><button type="button" id="complete" data-item="'+list[i].id+'">Complete</button><button type="button" id="delete" data-item="'+list[i].id+'">Delete</button></p>');
-    console.log(list[i].id);
+    // populate DOM with data from db and complete/delete buttons for each task
+    var createNewDiv = $('.completedTasksDiv').append('<div data-item="'+list[i].id+'">'+'</div>');
+    var displayDoneTask = createNewDiv.append('<p><input type="checkbox" id="complete" data-item="'+list[i].id+'">'+list[i].task+'<button type="button" id="delete" data-item="'+list[i].id+'">Delete'+'</button></p>');
   } // end for loop
- } // end displayCurrentList function
+} // end displayCompletedList function
 
-function getList () {
+function completedListToDom () {
   $.ajax({
     type: 'GET',
-    url: '/getList',
+    url: '/getCompletedList',
     success: function (data) {
-      console.log('Got the list:');
-      displayCurrentList(data);
+      displayCompletedList (data);
     } // end success function
-  }); //end ajax request
-}
+  }); //end ajax GET request
+} // end completedListToDom function

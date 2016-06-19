@@ -1,47 +1,58 @@
 body {
   text-align: center;
+  font-family: 'Comic Sans MS', cursive;
+  background: url(http://www.bridgesfornewbeginnings.org/images/background.jpg) no-repeat fixed;
+  background-size: cover;
 }
 
 h1 {
-  font-size: 38px;
-  font-weight: bold;
-  margin-top: 4%;
-  margin-bottom: 2%;
-  font-family: cursive;
+  font: normal bold 34px 'Comic Sans MS', Tahoma;
+  margin-top: 0;
+  margin-bottom: 1%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: rgb(241,232,199);
+  /*opacity: 0.85;*/
+}
+
+#dateIntro {
+  font: italic bold 20px 'Comic Sans MS', Tahoma;
+}
+
+#currentDate {
+  font: normal bold 16px 'Comic Sans MS', Tahoma;
 }
 
 #newTask, #newTaskBtn {
   margin: 1% 0.5%;
 }
 
-.pendingTasksDiv {
-  font-size: 16px;
-  font-weight: normal;
+#newTask {
+  width: 10%;
+}
+
+.pendingTasksDiv, .completedTasksDiv {
+  font: 18px 'Comic Sans MS', Tahoma;
   border: 2px solid black;
-  margin: 2% auto;
-  width: 30%;
-  height: 400px;
+  margin: 1% auto;
+  width: 35%;
+  height: 450px;
   padding: 2% 3%;
-  background-image: url('http://up.hawahome.com/uploads/14526080163.jpg');
-  background-repeat: no-repeat;
+  background: url(http://up.hawahome.com/uploads/14526080163.jpg) no-repeat;
   background-size: cover;
   overflow: auto;
   /*text-align: left;*/
 }
 
-.pendingTasksDiv button {
+.pendingTasksDiv button, .completedTasksDiv button {
+  font-size: 16px;
   float: right;
 }
 
-.pendingTasksDiv input {
+.pendingTasksDiv input, .completedTasksDiv input {
   float: left;
 }
 
-#dateIntro {
-  font-size: 20px;
-}
-
-#currentDate {
-  font-family: cursive;
-  font-size: 18px;
+.container {
+  display: inline-block;
 }
