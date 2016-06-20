@@ -30,7 +30,7 @@ $(document).ready(function() {
       } // end success function
     }); // end ajax POST request
     $('#newTask').val(''); // empty input field after a task is added by user
-    // location.reload(true);
+    // location.reload(true); // force reload page automatically. quick fix for updating DOM when new task added.
   }); // end add task click function
 
 $('.pendingTasksDiv').on('click', '#complete', function () {
@@ -39,8 +39,6 @@ $('.pendingTasksDiv').on('click', '#complete', function () {
   var getID = {
     'id': $(this).attr('data-item')
   };
-  // $(this).parent().css('text-decoration', 'line-through').css('opacity', '0.60'); // change visual rep of completed task on FE
-  // $(this).parent().append('#completedTasksDiv'); // trying to move completed tasks to completedTasksDiv...
   $(this).parent().remove(); // and at the same time remove them from this pendingTasksDiv...
   console.log('this id completed: ' + $(this).attr('data-item'));
   $.ajax({
@@ -49,7 +47,7 @@ $('.pendingTasksDiv').on('click', '#complete', function () {
     data: getID,
     success: function () {
       completedListToDom();
-      // console.log ('knocked one off the list');
+      console.log ('knocked one off the list');
     } // end success function
   }); //end ajax POST request
 }); // end complete button click function
@@ -58,7 +56,7 @@ $('.pendingTasksDiv').on('click', '#delete', function () {
   var getID = {
     'id': $(this).attr('data-item')
   };
-  var confirmDelete = confirm('Your conscience says: Are you sure you want put off until tomorrow what you can do today?');
+  var confirmDelete = confirm('Your conscience says: Are you sure you want to put off until tomorrow what you can do today?');
   if (confirmDelete) {
     $(this).parent().remove(); // remove task from DOM
     $.ajax({
@@ -111,7 +109,6 @@ function displayCompletedList (list) {
     var displayDoneTask = createNewDiv.append(uniqueTaskDiv);
 
     uniqueTaskDiv.css('text-decoration', 'line-through').css('opacity', '0.60'); // change visual rep of completed task on FE (only text of task, not whole list)
-
   } // end for loop
 } // end displayCompletedList function
 
