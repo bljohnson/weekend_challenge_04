@@ -6,13 +6,14 @@ body {
 }
 
 h1 {
+  color: black;
   font: normal bold 34px 'Comic Sans MS', Tahoma;
   margin-top: 0;
-  margin-bottom: 1%;
-  padding-top: 1.5%;
-  padding-bottom: 1.5%;
-  background-color: rgb(255,177,73);
-  opacity: 0.90;
+  margin-bottom: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: rgb(242,192,63);
+  opacity: 0.80;
 }
 
 #dateIntro {
@@ -25,18 +26,37 @@ h1 {
 
 #newTask, #newTaskBtn {
   margin: 1% 0;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #newTask {
   width: 12%;
 }
 
+.master {
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.containerL, .containerR {
+  display: inline-block;
+  width: 50%;
+}
+
+.containerL {
+  float: left;
+  margin: 0 auto;
+}
+
+.containerR {
+  margin: 0 auto;
+}
+
 .pendingTasksDiv, .completedTasksDiv {
-  font: 18px 'Comic Sans MS', Tahoma;
+  font: 16px 'Comic Sans MS', Tahoma;
   border: 2px solid black;
   margin: 1% auto;
-  width: 30%;
+  width: 60%;
   height: 450px;
   padding: 2% 3%;
   background: url(http://up.hawahome.com/uploads/14526080163.jpg) no-repeat;
@@ -54,9 +74,9 @@ h1 {
   float: left;
 }
 
-/*.container {
-  display: inline-block;
-}*/
+.pendingTitle, .completedTitle {
+  font: normal bold 22px 'Comic Sans MS', Tahoma;
+}
 
 button:hover{
     background: -webkit-gradient(linear, left top, left bottom, from(#DCDCDC), to(#EDEDED));

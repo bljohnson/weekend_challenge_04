@@ -11,7 +11,7 @@ $(document).ready(function() {
   completedListToDom(); // display existing completed list upon application load
 
   $('#newTaskBtn').on('click', function () {
-    // event.preventDefault(); // enables auto-update of list on DOM after first task is added to list and Add button clicked
+    // event.preventDefault(); // enables auto-update of list on DOM after first task is added to list and Add button clicked?
     $('.pendingTasksDiv').empty(); // refresh this div each time to prevent duplication
     // assemble an object (always need to do this for a POST call)
     var task = $('#newTask').val();
@@ -34,7 +34,7 @@ $(document).ready(function() {
   }); // end add task click function
 
 $('.pendingTasksDiv').on('click', '#complete', function () {
-  // event.preventDefault(); // enables auto-update of list on DOM after first task is added to list and Add button clicked
+  // event.preventDefault(); // enables auto-update of list on DOM after a task is marked completed?
   $('.completedTasksDiv').empty(); // refresh this div each time to prevent duplication
   var getID = {
     'id': $(this).attr('data-item')
@@ -107,9 +107,10 @@ function displayCompletedList (list) {
   for (i=0; i<list.length; i++) {
     // populate DOM with data from db and complete/delete buttons for each task
     var createNewDiv = $('.completedTasksDiv').append('<div data-item="'+list[i].id+'">'+'</div>');
-    var displayDoneTask = createNewDiv.append('<p>'+list[i].task+'</p>');
+    var uniqueTaskDiv = $('<p>'+list[i].task+'</p>');
+    var displayDoneTask = createNewDiv.append(uniqueTaskDiv);
 
-    createNewDiv.css('text-decoration', 'line-through').css('opacity', '0.60'); // change visual rep of completed task on FE
+    uniqueTaskDiv.css('text-decoration', 'line-through').css('opacity', '0.60'); // change visual rep of completed task on FE (only text of task, not whole list)
 
   } // end for loop
 } // end displayCompletedList function
