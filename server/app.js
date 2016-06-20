@@ -71,6 +71,14 @@ app.post('/deleteTask', urlencodedParser, function (req, res) {
 
 // -------------------
 
+app.post('/startOver', urlencodedParser, function (req, res) {
+  pg.connect(connectionString, function (err, client, done) {
+      client.query('TRUNCATE TABLE list; ALTER SEQUENCE list_id_seq RESTART WITH 1'); // clear all data in table (rows) and restart id auto-incrementer at 1
+  done();
+  });
+  res.end(); // ensures success function response sent
+});
+
 
 app.get('/getCompletedList', function (req, res) {
   console.log('in getCompletedList URL');

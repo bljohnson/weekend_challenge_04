@@ -33,6 +33,10 @@ h1 {
   width: 12%;
 }
 
+#startOver {
+  margin-top:1%;
+}
+
 .master {
   width: 100%;
   margin-bottom: 3%;

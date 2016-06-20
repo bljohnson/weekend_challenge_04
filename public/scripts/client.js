@@ -72,11 +72,18 @@ $('.pendingTasksDiv').on('click', '#delete', function () {
   }// end if statement
 }); // end delete button click function
 
-// function works to clear lists on DOM, but doesn't clear tasks from db...yet...
-// $('#clearAll').click(function () {
-//   $('.completedTasksDiv').empty();
-//   $('.pendingTasksDiv').empty();
-// }); // end clearAll button click function
+// clear lists on DOM and clear db table
+$('#startOver').click(function () {
+  $('.completedTasksDiv').empty();
+  $('.pendingTasksDiv').empty();
+     $.ajax({
+       type: 'POST',
+       url: '/startOver', // post to this URL to clear db table completely
+       success: function () {
+         console.log('starting fresh!');
+       } // end success function
+     }); // end ajax POST request
+}); // end clearAll button click function
 
 }); // end doc ready function
 
